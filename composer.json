@@ -1,0 +1,31 @@
+{
+  "name": "mikefrancis/craft-starter-kit",
+  "description": "Craft CMS starter kit",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.0.0",
+    "ext-gd": "*",
+    "craftcms/cms": "^3.0.0-RC1",
+    "vlucas/phpdotenv": "^2.4.0",
+    "roave/security-advisories": "dev-master",
+    "craftcms/aws-s3": "^1.0",
+    "venveo/craft3-mix": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "modules\\": "modules/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true
+  },
+  "scripts": {
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": [
+      "@composer dump-autoload -o",
+      "@php craft setup/welcome"
+    ]
+  }
+}
