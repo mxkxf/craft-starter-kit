@@ -1,27 +1,86 @@
-<p align="center"><a href="https://craftcms.com/" target="_blank"><img width="312" height="90" src="https://craftcms.com/craftcms.svg" alt="Craft CMS"></a></p>
+# Craft CMS Starter Kit
 
-## About Craft CMS
+An opinionated [Craft CMS](https://craftcms.com) starter kit, featuring the following:
 
-Craft is a content-first CMS that aims to make life enjoyable for developers and content managers alike. It is optimized for bespoke web and application development, offering developers a clean slate to build out exactly what they want, rather than wrestling with a theme.
+* Sass pre-processing
+* ES6 compilation
+* Cache busting
+* Composer managed
+* AWS S3 assets
+* Heroku deploys
 
-Learn more about Craft at [craftcms.com](https://craftcms.com).
+## Installation
 
-## How to Install Craft 3
+Start by installing [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx), if you don't 
+already have it. Then create a new project:
 
-See the Craft 3 documentation for [installation](https://github.com/craftcms/docs/blob/master/en/installation.md) and [updating](https://github.com/craftcms/docs/blob/master/en/upgrade.md) instructions.
+```bash
+composer create-project mikefrancis/craft-starter-kit my-new-project
+```
 
-## Resources
+Once this is complete you will then need to edit the generated `.env` file to add your project's URL and database and 
+S3 credentials.
 
-#### Official Resources
-- [Craft 3 Documentation](https://github.com/craftcms/docs)
-- [Craft 3 Class Reference](https://docs.craftcms.com/api/v3/)
-- [Craft 3 Plugins](https://plugins.craftcms.com)
-- [Demo site](https://demo.craftcms.com/)
-- [Craft Slack](https://craftcms.com/community#slack)
-- [Craft CMS Stack Exchange](http://craftcms.stackexchange.com/)
+After completing this step, the final thing to do is to run the database migrations:
 
-#### Community Resources
-- [Mijingo](https://mijingo.com/craft) – Video courses and other learning resources
-- [Envato Tuts+](https://webdesign.tutsplus.com/categories/craft-cms/courses) – Video courses
-- [Straight Up Craft](http://straightupcraft.com/) – Articles, tutorials, and more
-- [pluginfactory.io](https://pluginfactory.io/) – Craft plugin scaffold generator
+```bash
+php craft migrate
+```
+
+## Development
+
+You can either view your project in the browser or run the following to start a new BrowserSync server: 
+
+```bash
+npm run watch
+```
+
+This will watch your source files and perform your build tasks, then reload the browser for you. The server will proxy 
+to whatever is set as your `APP_URL` in your `.env` file.
+
+## Deployment
+
+When you're ready to share your project, you can deploy it to [Heroku](https://heroku.com) for free (at the time of writing).
+
+First, create a new Heroku app and add the ClearDB add-on:
+
+```bash
+heroku create
+heroku addons:create cleardb:ignite
+heroku config:get CLEARDB_DATABASE_URL
+```
+
+From the `CLEARDB_DATABASE_URL`, you will need to extract the following:
+
+```bash
+mysql://{$USERNAME}:{$PASSWORD}@{$SERVER}.cleardb.net/{$DATABASE}?reconnect=true
+```
+
+And replace the values below with those values:
+
+```bash
+heroku config:get CLEARDB_DATABASE_URL
+heroku config:set \
+ APP_ENV=production \
+ APP_KEY=$(openssl rand -base64 32) \
+ DB_DRIVER=mysql \
+ DB_HOSTNAME=SERVER.cleardb.net \
+ DB_USERNAME=USERNAME \
+ DB_PASSWORD=PASSWORD \
+ DB_DATABASE=DATABASE
+```
+
+(We are trying to find a way to automate this!)
+
+Once these environment variables have been published to Heroku, you are ready to push your code. Heroku will then take 
+care of installing the dependencies and migrating the database:
+
+```bash
+git push heroku master
+```
+
+Then you can view your project!
+
+```bash
+heroku open
+```
