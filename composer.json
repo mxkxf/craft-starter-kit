@@ -1,6 +1,7 @@
 {
   "name": "mikefrancis/craft-starter-kit",
   "description": "Craft CMS starter kit",
+  "type": "project",
   "license": "MIT",
   "require": {
     "php": ">=7.0.0",
