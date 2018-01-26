@@ -4,10 +4,10 @@ An opinionated [Craft CMS](https://craftcms.com) starter kit, featuring the foll
 
 * Sass pre-processing
 * ES6 compilation
-* Cache busting
+* Cache bursting
 * Composer managed
-* AWS S3 assets
-* Heroku deploys
+* AWS S3 asset management
+* Git deploys to Heroku
 
 ## Installation
 
@@ -84,3 +84,13 @@ Then you can view your project!
 ```bash
 heroku open
 ```
+
+## Extending
+
+As we're making use of the fantastic [Laravel Mix](https://laravel.com/docs/5.5/mix) package, you can take advantage of other configurations and build 
+tasks enabled, such as:
+
+ * [Copying folders](https://laravel.com/docs/5.5/mix#copying-files-and-directories) (if you are using custom fonts)
+ * [Compiling JSX templates](https://laravel.com/docs/5.5/mix#react)
+
+Please check the [docs](https://laravel.com/docs/5.5/mix) for more!
