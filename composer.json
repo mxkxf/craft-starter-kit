@@ -12,11 +12,6 @@
     "craftcms/aws-s3": "^1.0",
     "venveo/craft3-mix": "^1.0"
   },
-  "autoload": {
-    "psr-4": {
-      "modules\\": "modules/"
-    }
-  },
   "config": {
     "optimize-autoloader": true
   },
