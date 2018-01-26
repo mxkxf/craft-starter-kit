@@ -70,7 +70,7 @@ heroku config:set \
  DB_DATABASE=DATABASE
 ```
 
-(We are trying to find a way to automate this!)
+[(We are trying to find a way to automate this!)](https://github.com/mikefrancis/craft-starter-kit/issues/2)
 
 Once these environment variables have been published to Heroku, you are ready to push your code. Heroku will then take 
 care of installing the dependencies and migrating the database:
