@@ -59,7 +59,6 @@ mysql://{$USERNAME}:{$PASSWORD}@{$SERVER}.cleardb.net/{$DATABASE}?reconnect=true
 And replace the values below with those values:
 
 ```bash
-heroku config:get CLEARDB_DATABASE_URL
 heroku config:set \
  APP_ENV=production \
  APP_KEY=$(openssl rand -base64 32) \
