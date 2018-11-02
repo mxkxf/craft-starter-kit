@@ -14,8 +14,6 @@
  */
 
 return [
-    'modules' => [
-        'my-module' => \modules\Module::class,
-    ],
+    //'modules' => [],
     //'bootstrap' => ['my-module'],
 ];
