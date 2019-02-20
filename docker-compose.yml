@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  web:
+    ports:
+      - "8001:8000"
+    volumes:
+      - .:/opt
+    networks:
+      - appnet
+    working_dir: /opt
+    build: .
+  db:
+    image: mysql:5
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: craft
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+    volumes:
+      - data:/var/lib/mysql
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: bridge
+volumes:
+  data:
+    driver: local
