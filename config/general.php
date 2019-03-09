@@ -22,15 +22,15 @@ return [
         'cpTrigger' => 'admin',
 
         // The secure key Craft will use for hashing and encrypting data
-        'securityKey' => getenv('APP_KEY'),
+        'securityKey' => getenv('SECURITY_KEY'),
 
-        'timezone' => getenv('APP_TIMEZONE'),
+        'timezone' => getenv('SITE_TIMEZONE'),
     ],
 
     // Dev environment settings
     'dev' => [
         // Base site URL
-        'siteUrl' => getenv('APP_URL'),
+        'siteUrl' => getenv('SITE_URL'),
 
         // Dev Mode (see https://craftcms.com/support/dev-mode)
         'devMode' => true,
@@ -39,12 +39,12 @@ return [
     // Staging environment settings
     'staging' => [
         // Base site URL
-        'siteUrl' => getenv('APP_URL'),
+        'siteUrl' => getenv('SITE_URL'),
     ],
 
     // Production environment settings
     'production' => [
         // Base site URL
-        'siteUrl' => getenv('APP_URL'),
+        'siteUrl' => getenv('SITE_URL'),
     ],
 ];

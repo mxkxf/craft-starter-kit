@@ -10,14 +10,16 @@
     "vlucas/phpdotenv": "^2.4.0",
     "roave/security-advisories": "dev-master",
     "craftcms/aws-s3": "^1.0",
-    "venveo/craft3-mix": "^1.0"
+    "venveo/craft3-mix": "^1.0",
+    "codemix/yii2-streamlog": "^1.2"
   },
   "config": {
     "optimize-autoloader": true
   },
   "scripts": {
     "post-root-package-install": [
-      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+      "@php craft setup/security-key"
     ],
     "post-create-project-cmd": [
       "@composer dump-autoload -o",

@@ -2,23 +2,38 @@
 
 An opinionated [Craft CMS](https://craftcms.com) starter kit, featuring the following:
 
-* Sass pre-processing
-* ES6 compilation
-* Cache bursting
-* Composer managed
-* AWS S3 asset management
-* Git deploys to Heroku
+- Sass pre-processing
+- ES6 compilation
+- Cache bursting
+- Composer managed
+- AWS S3 asset management
+- Git deploys to Heroku
 
 ## Installation
 
-Start by installing [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx), if you don't 
-already have it. Then create a new project:
+Firstly if you do not have it installed, go ahead and install [Docker](https://www.docker.com/products/docker-desktop).
+
+Then clone this repository and navigate to it:
 
 ```bash
-composer create-project mikefrancis/craft-starter-kit my-new-project
+git clone git@github.com:mikefrancis/craft-starter-kit.git
+cd craft-starter-kit
 ```
 
-Once this is complete you will then need to edit the generated `.env` file to add your project's URL and database and 
+Then start all the containers:
+
+```bash
+docker-compose up -d
+```
+
+Make a note of the `web` container ID, execute bash and install the Composer dependencies:
+
+```bash
+docker exec -i {CONTAINER_ID} bash
+composer install
+```
+
+Once this is complete you will then need to edit the generated `.env` file to add your project's URL and database and
 S3 credentials.
 
 After completing this step, the final thing to do is to run the database migrations:
@@ -29,13 +44,13 @@ php craft migrate
 
 ## Development
 
-You can either view your project in the browser or run the following to start a new BrowserSync server: 
+You can either view your project in the browser or run the following to start a new BrowserSync server:
 
 ```bash
 npm run watch
 ```
 
-This will watch your source files and perform your build tasks, then reload the browser for you. The server will proxy 
+This will watch your source files and perform your build tasks, then reload the browser for you. The server will proxy
 to whatever is set as your `APP_URL` in your `.env` file.
 
 ## Deployment
@@ -71,7 +86,7 @@ heroku config:set \
 
 [(We are trying to find a way to automate this!)](https://github.com/mikefrancis/craft-starter-kit/issues/2)
 
-Once these environment variables have been published to Heroku, you are ready to push your code. Heroku will then take 
+Once these environment variables have been published to Heroku, you are ready to push your code. Heroku will then take
 care of installing the dependencies and migrating the database:
 
 ```bash
@@ -86,10 +101,10 @@ heroku open
 
 ## Extending
 
-As we're making use of the fantastic [Laravel Mix](https://laravel.com/docs/5.5/mix) package, you can take advantage of other configurations and build 
+As we're making use of the fantastic [Laravel Mix](https://laravel.com/docs/5.5/mix) package, you can take advantage of other configurations and build
 tasks enabled, such as:
 
- * [Copying folders](https://laravel.com/docs/5.5/mix#copying-files-and-directories) (if you are using custom fonts)
- * [Compiling JSX templates](https://laravel.com/docs/5.5/mix#react)
+- [Copying folders](https://laravel.com/docs/5.5/mix#copying-files-and-directories) (if you are using custom fonts)
+- [Compiling JSX templates](https://laravel.com/docs/5.5/mix#react)
 
 Please check the [docs](https://laravel.com/docs/5.5/mix) for more!
